@@ -1,0 +1,1 @@
+from app_inv.models.custom_user import User
