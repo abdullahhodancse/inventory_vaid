@@ -19,10 +19,13 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include
+from pro_inventory.views import home_view,base_view
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',home_view,name='home'),
+    path('base/',base_view,name='base'),
     path('app/',include('app_inv.urls')),
 ]
 if settings.DEBUG:

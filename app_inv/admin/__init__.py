@@ -1,0 +1,1 @@
+from app_inv.admin.custom_user_admin import UserAdmin

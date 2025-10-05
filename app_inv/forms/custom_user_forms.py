@@ -10,7 +10,7 @@ class RegisterForm(forms.Form):
 
 
     def clean_email(self):
-        email=self.cleaned_data.get('email').Lower()
+        email=self.cleaned_data.get('email')
         if user.objects.filter(email=email).exists():
             raise forms.ValidationError("Email already exists")
         return email

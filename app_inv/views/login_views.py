@@ -7,7 +7,7 @@ def login_view(request):
     if request.method=='POST':
         form=loginform(request.POST)
         if form.is_valid():
-            user=form.changed_data['user']
+            user=form.user
             login(request,user)
             return redirect('home')
     else:

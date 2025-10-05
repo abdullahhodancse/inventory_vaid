@@ -8,11 +8,11 @@ def register_view(request):
     if request.method=='POST':
         form=RegisterForm(request.POST)
         if form.is_valid():
-            email=form.cleaned_data('email')
-            password=form.cleaned_data['password']
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password1']
 
             user=User.objects.create_user(email=email,password=password)
-            return redirect('')
+            return redirect('login')
     else:
         form = RegisterForm()
             
