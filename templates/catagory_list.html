@@ -38,7 +38,7 @@
                 
                 <td class="text-end">
                   <a href="{%url 'catagory_update' cat.pk%}" class="btn btn-sm btn-warning">Edit</a>
-                  <a href="" class="btn btn-sm btn-danger">Delete</a>
+                  <a href="{%url 'delete_catagory' cat.pk%}" class="btn btn-sm btn-danger">Delete</a>
                 </td>
               </tr>
             {% endfor %}

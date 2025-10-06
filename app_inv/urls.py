@@ -6,6 +6,7 @@ from app_inv.views.password_chnage import change_password
 from app_inv.views.create_catagory import add_catagory
 from app_inv.views.catagory_list import catagory_list
 from app_inv.views.catagory_update import catagory_update_view
+from app_inv.views.delete_catagory import delete_catagory
 from django.urls import path
 
 
@@ -18,4 +19,5 @@ urlpatterns=[
     path('create_catagory/',add_catagory,name='add_catagory'),
     path('cat_up/<int:pk>/',catagory_update_view,name='catagory_update'),
     path('list/',catagory_list,name='catagory_list'),
+    path('delete_catagory/<int:pk>/',delete_catagory,name='delete_catagory')
 ]
