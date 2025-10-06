@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
-from app_inv.models.catagory import catagory
+from app_inv.models.catagory import Catagory
 
 
 # Create your models here.
@@ -34,7 +34,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     first_name=models.CharField(max_length=100)
     last_name=models.CharField(max_length=100)
     
-    catagory=models.ManyToManyField(catagory,null=True, blank=True)
+    catagory=models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk')
 
     is_active=models.BooleanField(default=True)
     is_staff=models.BooleanField(default=False)

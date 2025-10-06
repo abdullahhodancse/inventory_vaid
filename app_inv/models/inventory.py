@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from app_inv.models.catagory import catagory
+from app_inv.models.catagory import Catagory
 
 User=get_user_model()
 
@@ -16,7 +16,7 @@ class inventory(models.Model):
     name=models.CharField(max_length=100)
     priority=models.CharField(max_length=100,choices=PRIORITY_CHOICES)
     date=models.DateField(auto_now=True)
-    catagory=models.ManyToManyField(catagory,null=True, blank=True)
+    catagory=models.ManyToManyField(Catagory,null=True, blank=True)
     number_of_list=models.PositiveBigIntegerField(default=1)
 
 

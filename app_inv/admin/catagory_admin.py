@@ -1,7 +1,7 @@
 from django.contrib import admin
-from app_inv.models.catagory import catagory
+from app_inv.models.catagory import Catagory
 
-@admin.register(catagory)
+@admin.register(Catagory)
 class catagory_admin(admin.ModelAdmin):
     list_display=['name']
     search_fields=['name']
