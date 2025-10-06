@@ -5,6 +5,7 @@ from app_inv.views.profile_view import profile
 from app_inv.views.password_chnage import change_password
 from app_inv.views.create_catagory import add_catagory
 from app_inv.views.catagory_list import catagory_list
+from app_inv.views.catagory_update import catagory_update_view
 from django.urls import path
 
 
@@ -15,5 +16,6 @@ urlpatterns=[
     path ('profile/',profile,name='profile'),
     path("change_password/",change_password,name="chnage_password"),
     path('create_catagory/',add_catagory,name='add_catagory'),
-    path('list/',catagory_list,name='catagory_list')
+    path('cat_up/<int:pk>/',catagory_update_view,name='catagory_update'),
+    path('list/',catagory_list,name='catagory_list'),
 ]
