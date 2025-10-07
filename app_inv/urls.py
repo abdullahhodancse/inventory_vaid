@@ -7,6 +7,8 @@ from app_inv.views.create_catagory import add_catagory
 from app_inv.views.catagory_list import catagory_list
 from app_inv.views.catagory_update import catagory_update_view
 from app_inv.views.delete_catagory import delete_catagory
+from app_inv.views.inventory_create import inventory_create
+from app_inv.views.inventory_show import Show_inventory
 from django.urls import path
 
 
@@ -19,5 +21,7 @@ urlpatterns=[
     path('create_catagory/',add_catagory,name='add_catagory'),
     path('cat_up/<int:pk>/',catagory_update_view,name='catagory_update'),
     path('list/',catagory_list,name='catagory_list'),
-    path('delete_catagory/<int:pk>/',delete_catagory,name='delete_catagory')
+    path('delete_catagory/<int:pk>/',delete_catagory,name='delete_catagory'),
+    path('create_inv/',inventory_create,name='create_inventory'),
+    path('home/',Show_inventory,name='home')
 ]
