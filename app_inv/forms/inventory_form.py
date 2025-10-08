@@ -13,6 +13,6 @@ class InventoryForm(forms.ModelForm):
 
         if user:
             
-            self.fields['catagory'].queryset = Catagory.objects.filter(user=user)
+            self.fields['catagory'].queryset = Catagory.objects.filter(user=user) # login user catagoty filter kora 
 
 

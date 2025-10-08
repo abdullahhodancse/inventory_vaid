@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model # user for bring custom user model
 from app_inv.models.catagory import Catagory
 
 User = get_user_model()
@@ -17,7 +17,7 @@ class inventory(models.Model):
     priority = models.CharField(max_length=100,choices=PRIORITY_CHOICES)
     date = models.DateField(auto_now=True)
     catagory = models.ManyToManyField(Catagory,null=True, blank=True)
-    number_of_list = models.PositiveBigIntegerField(default=1)
+    number_of_list = models.PositiveBigIntegerField(default=1) # it menas the quantity
 
 
     def __str__(self):

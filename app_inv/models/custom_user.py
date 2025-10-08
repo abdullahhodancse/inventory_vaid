@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,Permissi
 from app_inv.models.catagory import Catagory
 
 
-# Create your models here.
+# my cusrom models
 class usermanger(BaseUserManager):
     def create_user(self,email,password=None,**extra_fields):
         if not email:
@@ -34,7 +34,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     
-    catagory = models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk')
+    catagory = models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk') #FK with catagory model
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

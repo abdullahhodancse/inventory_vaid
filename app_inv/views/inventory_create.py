@@ -12,7 +12,7 @@ def inventory_create(request):
             inv=form.save(commit=False)
             inv.user=request.user
             inv.save()
-            form.save_m2m()
+            form.save_m2m()  #for many to many field
             messages.success(request,'Inventory added')
             return redirect('home')
     else:

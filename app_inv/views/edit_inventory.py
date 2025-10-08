@@ -8,13 +8,13 @@ from django.contrib.auth.decorators import login_required
 def edit_inventory(request,pk):
     inv=get_object_or_404(inventory,id=pk)
     if request.method=='POST':
-        form=InventoryForm(request.POST,instance=inv,user=request.user)
+        form=InventoryForm(request.POST,user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request,'inventory updated')
             return redirect('home')
     else:
-        form=InventoryForm()
+        form=InventoryForm(instance=inv)
     return render(request,'inv_edit.html',{'form':form})
 
 
