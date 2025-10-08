@@ -13,7 +13,7 @@ def catagory_update_view(request,pk):
 
     is_used=inventory.objects.filter(catagory=cat).exists()
     if is_used:
-        messages.error(request,'annot update this category — it is used in an inventory.')
+        messages.error(request,'cannot update this category — it is used in an inventory.')
         return redirect('catagory_list')
     
     if request.method=='POST':

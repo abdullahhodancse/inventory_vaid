@@ -8,8 +8,8 @@ class usermanger(BaseUserManager):
     def create_user(self,email,password=None,**extra_fields):
         if not email:
             raise ValueError("You must give email address")
-        email=self.normalize_email(email)    #email k normal text e convert korbe,,,,
-        user=self.model(email=email,**extra_fields) #obkect create kora hoyeche,ai kahne shudu email neya hoice,,,password neya hoyni karon ai kahne nile plain text thakbe kinto passwors sob somoi hash kora lage
+        email = self.normalize_email(email)    #email k normal text e convert korbe,,,,
+        user = self.model(email=email,**extra_fields) #obkect create kora hoyeche,ai kahne shudu email neya hoice,,,password neya hoyni karon ai kahne nile plain text thakbe kinto passwors sob somoi hash kora lage
         user.set_password(password) # now hash tha passs
         user.save(using=self.db) # sava it in database
         return user
@@ -30,20 +30,20 @@ class usermanger(BaseUserManager):
     
 
 class User(AbstractBaseUser,PermissionsMixin):
-    email=models.EmailField(unique=True)
-    first_name=models.CharField(max_length=100)
-    last_name=models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
     
-    catagory=models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk')
+    catagory = models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk')
 
-    is_active=models.BooleanField(default=True)
-    is_staff=models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
 
-    objects=usermanger()
+    objects = usermanger()
 
 
-    USERNAME_FIELD='email'
-    REQUIRED_FIELDS=[]
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
 
 
     def __str__(self):

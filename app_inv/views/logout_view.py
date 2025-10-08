@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.contrib.auth import logout
 
 def logout_vi(request):
     logout(request)
-    return render(request,'login.html')
+    return redirect('home')
