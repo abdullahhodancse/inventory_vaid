@@ -11,6 +11,7 @@ from app_inv.views.inventory_create import inventory_create
 from app_inv.views.inventory_show import Show_inventory
 from app_inv.views.edit_inventory import edit_inventory
 from app_inv.views.delete_inventory import delete_inventory
+from app_inv.views.email_verification import verify_email
 from django.urls import path
 
 
@@ -27,5 +28,6 @@ urlpatterns=[
     path('create_inv/',inventory_create,name='create_inventory'),
     path('edit_inv/<int:pk>/', edit_inventory,name='edit_invebtory'),
     path('delete_inv/<int:pk>/',delete_inventory,name='delete_inv'),
-    path('home/',Show_inventory,name='home')
+    path('verify/<token>/', verify_email, name='verify_email'),
+    path('home/',Show_inventory,name='home'),
 ]

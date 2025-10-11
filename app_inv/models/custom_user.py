@@ -36,8 +36,9 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     catagory = models.ManyToManyField(Catagory,null=True, blank=True,related_name='users_fk') #FK with catagory model
 
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    verification_token = models.CharField(max_length=100, null=True, blank=True)
 
     objects = usermanger()
 
