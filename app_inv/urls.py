@@ -14,6 +14,11 @@ from app_inv.views.edit_inventory import edit_inventory
 from app_inv.views.delete_inventory import delete_inventory
 from app_inv.views.email_verification import verify_email
 from app_inv.views.middleware_email import middle
+from app_inv.views.passwors_reset_com import complete
+from django.contrib.auth import views as auth_views
+from app_inv.views.pass_reset_view import CustomPasswordResetView
+from django.urls import reverse_lazy
+
 
 urlpatterns = [
     path('register/', register_view, name='register'),
@@ -29,11 +34,19 @@ urlpatterns = [
     path('edit_inv/<int:pk>/', edit_inventory, name='edit_inventory'),
     path('delete_inv/<int:pk>/', delete_inventory, name='delete_inv'),
     path('email_verification/',middle,name='email_verification'),
+    path('complete/',complete,name='complete'),
     path('home/', Show_inventory, name='home'),
+
+    path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='password_reset_confirm.html', success_url=reverse_lazy('password_reset_complete')), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='password_reset_complete.html'), name='password_reset_complete'),
+    
+    
+    path('<str:token>/', verify_email, name='verify_email'),
 
 
     
-    path('<str:token>/', verify_email, name='verify_email'),
 ]
 
    

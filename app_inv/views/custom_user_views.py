@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from app_inv.forms.custom_user_forms import RegisterForm
 from django.contrib.auth import get_user_model
-from app_inv.task import send_verification_email
+from app_inv.task.task_reg import send_verification_email
 import uuid
 from django.contrib import messages
 
