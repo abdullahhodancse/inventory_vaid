@@ -38,6 +38,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    is_verified=models.BooleanField(default=False,)
     verification_token = models.CharField(max_length=100, null=True, blank=True)
 
     objects = usermanger()

@@ -3,16 +3,17 @@ from app_inv.forms.custom_user_forms import RegisterForm
 from django.contrib.auth import get_user_model
 from app_inv.task import send_verification_email
 import uuid
+from django.contrib import messages
 
 User=get_user_model()
 
 def register_view(request):
-    if request.method=='POST':
+    if request.method =='POST':
         form=RegisterForm(request.POST)
         if form.is_valid():
             email=form.cleaned_data['email']
             password=form.cleaned_data['password1']
-            ## create inactive user
+            ##create inactive user
             user=User.objects.create_user(email=email,password=password,is_active=False)
             token=str(uuid.uuid4())
             #generate UUID
@@ -20,7 +21,10 @@ def register_view(request):
             user.save()
             # send HTML verification email in background
             send_verification_email.delay(email,token)
+            messages.success(request,'email has sent')
+            
             return redirect('login')
+            
     else:
         form = RegisterForm()
             

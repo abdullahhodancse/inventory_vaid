@@ -6,7 +6,10 @@ from django.conf import settings
 @shared_task
 def send_verification_email(email, token):
     subject = "Verify Your Email"
-    verification_link = f"http://127.0.0.1:8000/verify/{token}/"
+    # verification_link = f"http://127.0.0.1:8000/app/{token}/"
+    verification_link = f"http://127.0.0.1:8000/app/{token}/"
+
+
     
     # Render HTML template
     html_content = render_to_string("verification_email.html", {"verification_link": verification_link})

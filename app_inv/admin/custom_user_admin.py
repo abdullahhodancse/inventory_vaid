@@ -5,7 +5,7 @@ from app_inv.models.custom_user import User
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
     model=User
-    list_display=['email','is_staff','is_active']
+    list_display=['email','is_staff','is_active','verification_token','is_verified']
     list_filter=['is_staff','is_active','is_superuser']
     search_fields=['email']
     ordering=['email']
@@ -13,14 +13,14 @@ class UserAdmin(BaseUserAdmin):
 
     #aita code toko chara django USER e shudu user namr khujbe,,kinto ai kahne to user name nai,tai user name bad dite hobe
     fieldsets = (
-        (None, {'fields': ('email', 'password', 'is_active', 'is_staff')}),
+        (None, {'fields': ('email', 'password', 'is_active', 'is_staff','verification_token','is_verified')}),
         ('Permissions', {'fields': ('is_superuser', 'groups', 'user_permissions')}),
     )
 
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2', 'catagory', 'is_staff', 'is_active')}
+            'fields': ('email', 'password1', 'password2', 'catagory', 'is_staff', 'is_active','verification_token','is_verified')}
         ),
     ) # add user er somoi kon kon field dekhano hobe seta define kore
 
