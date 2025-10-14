@@ -17,7 +17,7 @@ def catagory_update_view(request,pk):
         return redirect('catagory_list')
     
     if request.method=='POST':
-        form=catagory(request.POST)
+        form=catagory(request.POST,instance=cat)
         if form.is_valid():
             cat=form.save(commit=False) #form  er data theke ekta object create and not save in db
             cat.user=request.user #obect e curent login user add kora

@@ -15,7 +15,7 @@ def verify_email(request, token):
         user.is_verified=True
         user.verification_token = None
         user.save()
-        messages.success(request, "✅ Email verified successfully! You can now login.")
+       
     else:
         messages.info(request, "Your email is already verified.")
 
