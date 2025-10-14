@@ -17,7 +17,8 @@ class inventory(models.Model):
     priority = models.CharField(max_length=100,choices=PRIORITY_CHOICES)
     date = models.DateField(auto_now=True)
     catagory = models.ManyToManyField(Catagory,null=True, blank=True)
-    number_of_list = models.PositiveBigIntegerField(default=1) # it menas the quantity
+    current_stock = models.PositiveBigIntegerField(default=10) # it menas the quantity
+    minimum_stock=models.PositiveBigIntegerField(default=5,null=True,blank=True)
 
 
     def __str__(self):
