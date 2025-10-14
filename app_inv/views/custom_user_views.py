@@ -19,9 +19,10 @@ def register_view(request):
             #generate UUID
             user.verification_token=token
             user.save()
+            messages.success(request,'Please Check your Email!!An Email has sent!!')
             # send HTML verification email in background
             send_verification_email.delay(email,token)
-            messages.success(request,'email has sent')
+           
             
             return redirect('login')
             
