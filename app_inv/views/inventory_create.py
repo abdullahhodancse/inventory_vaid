@@ -16,7 +16,7 @@ def inventory_create(request):
             messages.success(request,'Inventory added')
             return redirect('home')
     else:
-        form=InventoryForm()
+        form=InventoryForm(user=request.user)
     return render(request,'create_inventory.html',{'form':form})
 
 
