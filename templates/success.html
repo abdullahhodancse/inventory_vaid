@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Subscription Successful{% endblock %}
+
+{% block content %}
+<div class="subscription-container text-center">
+    <h2 class="text-success mb-3">
+        <i class="bi bi-check-circle"></i> Subscription Successful!
+    </h2>
+    <p class="fs-5 text-secondary mb-4">
+        Thank you for subscribing to the <strong>{{ user_subscription.plan.name }}</strong> plan. 
+        Your subscription is active until <strong>{{ user_subscription.end_date }}</strong>.
+    </p>
+    <a href="{% url 'profile' %}" class="btn btn-primary btn-lg shadow-sm">
+        <i class="bi bi-person-circle"></i> Go to My Profile
+    </a>
+</div>
+
+<style>
+.subscription-container {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+</style>
+{% endblock %}

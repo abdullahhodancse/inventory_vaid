@@ -17,6 +17,8 @@ from app_inv.views.middleware_email import middle
 from app_inv.views.passwors_reset_com import complete
 from django.contrib.auth import views as auth_views
 from app_inv.views.pass_reset_view import CustomPasswordResetView
+from app_inv.views.subscription_view import create_subscription
+from app_inv.views.expaire_view import expaire
 from django.urls import reverse_lazy
 
 
@@ -35,6 +37,8 @@ urlpatterns = [
     path('delete_inv/<int:pk>/', delete_inventory, name='delete_inv'),
     path('email_verification/',middle,name='email_verification'),
     path('complete/',complete,name='complete'),
+    path('expaier/',expaire,name='xpaier'),
+    path('sub/',create_subscription,name='subscription_form'),
     path('home/', Show_inventory, name='home'),
 
     path('password_reset/', CustomPasswordResetView.as_view(), name='password_reset'),

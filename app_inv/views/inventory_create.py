@@ -2,10 +2,25 @@ from django.shortcuts import render,redirect
 from app_inv.models.inventory import inventory
 from app_inv.forms.inventory_form import InventoryForm
 from django.contrib.auth.decorators import login_required
+from app_inv.models.user_subscription import UserSubscription
 from django.contrib import messages
 
 @login_required
 def inventory_create(request):
+
+    try:
+       user_subscription=UserSubscription.objects.get(user=request.user)
+       user_plan=user_subscription.plan
+    except UserSubscription.DoesNotExist:
+        messages.error(request,"No active subscription found.")
+        return redirect('xpaier')
+    
+    user_inventory=inventory.objects.filter(user=request.user).count()
+    if user_inventory>=user_plan.max_inventory:
+        messages.error(request,'Your inventory limit has been reached for this plan.')
+        return redirect('xpaier')
+
+
     if request.method=='POST':
         form=InventoryForm(request.POST,user=request.user)
         if form.is_valid():
@@ -16,7 +31,7 @@ def inventory_create(request):
             messages.success(request,'Inventory added')
             return redirect('home')
     else:
-        form=InventoryForm()
+        form=InventoryForm(user=request.user)
     return render(request,'create_inventory.html',{'form':form})
 
 
