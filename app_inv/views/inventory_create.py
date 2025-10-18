@@ -17,7 +17,7 @@ def inventory_create(request):
     
     user_inventory=inventory.objects.filter(user=request.user).count()
     if user_inventory>=user_plan.max_inventory:
-        messages.error(request,'Your inventory limit has been reached for this plan.')
+       
         return redirect('xpaier')
 
 
