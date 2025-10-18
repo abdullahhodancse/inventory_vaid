@@ -12,6 +12,14 @@
 
       <ul class="list-group list-group-flush mb-3">
         <li class="list-group-item"><i class="bi bi-envelope-fill text-primary"></i> <strong>Email:</strong> {{ user.email }}</li>
+
+        {% if user_subscription %}
+        <li class="list-group-item"><i class="bi bi-stars text-warning"></i> <strong>Current Plan:</strong> {{ user_subscription.plan.name }}</li>
+        <li class="list-group-item"><i class="bi bi-cash-stack text-success"></i> <strong>Price:</strong> ৳{{ user_subscription.plan.price }}</li>
+        <li class="list-group-item"><i class="bi bi-calendar2-check-fill text-secondary"></i> <strong>Valid Till:</strong> {{ user_subscription.end_date }}</li>
+        {% else %}
+        <li class="list-group-item text-danger"><strong>No active subscription</strong> — <a href="{% url 'subscription_form' %}">Subscribe now</a></li>
+        {% endif %}
       </ul>
 
       <div class="text-center mt-3 d-flex flex-column gap-2">
@@ -40,13 +48,9 @@
               {{ item.name }}
             </h5>
             <span class="badge 
-              {% if item.priority == 'High' %}
-                bg-danger
-              {% elif item.priority == 'Medium' %}
-                bg-warning text-dark
-              {% else %}
-                bg-success
-              {% endif %} fw-semibold">
+              {% if item.priority == 'High' %} bg-danger
+              {% elif item.priority == 'Medium' %} bg-warning text-dark
+              {% else %} bg-success {% endif %} fw-semibold">
               {{ item.priority }}
             </span>
           </div>
@@ -55,7 +59,6 @@
             <li><i class="bi bi-layers-fill text-primary"></i> <strong>Quantity:</strong> {{ item.current_stock}}</li>
             <li><i class="bi bi-person-circle text-success"></i> <strong>Owner:</strong> {{ item.user.email }}</li>
             <li><i class="bi bi-rulers text-success"></i> <strong>Size:</strong> {{ item.unit }}</li>
-
             <li><i class="bi bi-tags-fill text-warning"></i> <strong>Categories:</strong>
               {% for c in item.catagory.all %}
                 <span class="badge bg-info text-dark me-1">{{ c.name }}</span>

@@ -10,6 +10,7 @@ class UserSubscription(models.Model):
     plan=models.ForeignKey(SubscriptionPlan,on_delete=models.DO_NOTHING,null=True)
     start_date=models.DateField(auto_now_add=True)
     end_date=models.DateField(blank=True,null=True)
+    subscription_active=models.BooleanField(default=True)
 
     def save(self,*args,**kwargs):
         if not self.end_date and self.plan:

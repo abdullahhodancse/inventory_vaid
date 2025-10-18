@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app_inv',
     'widget_tweaks',
+    
 ]
 
 # Middleware
@@ -33,7 +34,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app_inv.middleware.EmailVerificationMiddleware',
+    'app_inv.middleware.emailmidleware.EmailVerificationMiddleware',
+    'app_inv.middleware.subs_middleware.SubscriptionCheckMiddleware',
 
 ]
 

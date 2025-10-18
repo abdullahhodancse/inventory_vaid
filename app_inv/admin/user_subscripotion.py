@@ -3,10 +3,10 @@ from app_inv.models.user_subscription import UserSubscription
 
 @admin.register(UserSubscription)
 class user__subscription_admin(admin.ModelAdmin):
-    list_display=('user','plan','start_date','end_date')
-    search_fields=('user',)
+    list_display=('user','plan','start_date','end_date','subscription_active',)
+    search_fields=('user','subscription_active',)
     ordering=('start_date',)
-    list_filter=('plan',)
+    list_filter=('plan','subscription_active',)
     readonly_fields=('start_date','end_date',)
 
 

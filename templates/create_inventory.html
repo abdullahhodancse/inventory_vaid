@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% load static %}
 
 {% block title %}Add Inventory | MyApp{% endblock %}
 
@@ -12,6 +13,26 @@
     </div>
 
     <div class="card-body px-5 py-5">
+
+      <!-- ✅ Message Section -->
+      {% if messages %}
+        <div class="mb-4">
+          {% for message in messages %}
+            <div class="alert 
+                        {% if message.tags == 'success' %}alert-success
+                        {% elif message.tags == 'error' %}alert-danger
+                        {% elif message.tags == 'warning' %}alert-warning
+                        {% elif message.tags == 'info' %}alert-info
+                        {% else %}alert-secondary{% endif %}
+                        alert-dismissible fade show shadow-sm" role="alert">
+              <i class="bi bi-info-circle-fill me-2"></i> {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      <!-- ✅ End Message Section -->
+
       <form method="POST" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form.non_field_errors }}
